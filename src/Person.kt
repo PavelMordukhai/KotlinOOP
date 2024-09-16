@@ -1,11 +1,11 @@
 class Person {
 
-    var name: String = ""
-    var age: Int = 0
-    var height: Int = 0
-    var weight: Int = 0
+    val name: String
+    val age: Int
+    val height: Int
+    val weight: Int
 
-    fun init(name: String, age: Int, height: Int, weight: Int) {
+    constructor(name: String, age: Int, height: Int, weight: Int) {
         this.name = name
         this.age = age
         this.height = height
