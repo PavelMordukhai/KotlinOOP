@@ -4,36 +4,34 @@ fun main() {
     val second = Person()
 
     print("Input 1st your name: ")
-    first.name = readln()
+    val firstName = readln()
     print("Input 2st your name: ")
-    second.name = readln()
+    val secondName = readln()
 
     print("Input 1st your age: ")
-    first.age = readln().toInt()
+    val firstAge = readln().toInt()
     print("Input 2st your age: ")
-    second.age = readln().toInt()
+    val secondAge = readln().toInt()
 
     print("Input 1st your height: ")
-    first.height = readln().toInt()
+    val firstHeight = readln().toInt()
     print("Input 2st your height: ")
-    second.height = readln().toInt()
+    val secondHeight = readln().toInt()
 
     print("Input 1st your weight: ")
-    first.weight = readln().toInt()
+    val firstWeight = readln().toInt()
     print("Input 2st your weight: ")
-    second.weight = readln().toInt()
+    val secondWeight = readln().toInt()
 
-    println("\n1. Name: ${first.name}\nAge: ${first.age}" +
-            "\nHeight: ${first.height}\nWeight: ${first.weight}")
-    println("\n2. Name: ${second.name}\nAge: ${second.age}" +
-            "\nHeight: ${second.height}\nWeight: ${second.weight}")
+    first.init(name = firstName, age = firstAge, height = firstHeight, weight = firstWeight)
+    second.init(name = secondName, age = secondAge, height = secondHeight, weight = secondWeight)
 
-    println()
+    first.printInfo()
+    second.printInfo()
+
     first.sayHello()
     second.sayHello()
 
-    println()
     first.run()
     second.run()
 }
-

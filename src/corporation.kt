@@ -12,7 +12,7 @@ fun main() {
     val price = readln().toInt()
     println()
 
-    productCard.init(name, brand, size, price)
+    productCard.init(name = name, brand = brand, size = size, price = price)
 
     productCard.printInfo()
 }
