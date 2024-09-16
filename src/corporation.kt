@@ -1,5 +1,20 @@
 fun main() {
 
-    val assistant = Assistant()
-    assistant.bringCoffee("Espresso", 1)
+    print("Enter name: ")
+    val name = readln()
+    print("Enter brand: ")
+    val brand = readln()
+    print("Enter size: ")
+    val size = readln().toFloat()
+    print("Enter price: ")
+    val price = readln().toInt()
+
+    val productCard = ProductCard()
+    productCard.name = name
+    productCard.brand = brand
+    productCard.size = size
+    productCard.price = price
+
+    println("\nName: ${productCard.name}\nBrand: ${productCard.brand}" +
+            "\nSize: ${productCard.size}\nPrice: ${productCard.price}")
 }
