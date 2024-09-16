@@ -1,8 +1,11 @@
-class Assistant {
+class Assistant(
+    val name: String,
+    val age: Int = 0,
+) {
 
     fun bringCoffee(
-        drinkName: String,
-        count: Int
+        drinkName: String = "Cappuccino",
+        count: Int = 1,
     ) {
         repeat(count) {
             println("Get up")
