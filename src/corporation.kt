@@ -1,5 +1,7 @@
 fun main() {
 
+    val productCard = ProductCard()
+
     print("Enter name: ")
     val name = readln()
     print("Enter brand: ")
@@ -8,13 +10,11 @@ fun main() {
     val size = readln().toFloat()
     print("Enter price: ")
     val price = readln().toInt()
+    println()
 
-    val productCard = ProductCard()
     productCard.name = name
     productCard.brand = brand
     productCard.size = size
     productCard.price = price
-
-    println("\nName: ${productCard.name}\nBrand: ${productCard.brand}" +
-            "\nSize: ${productCard.size}\nPrice: ${productCard.price}")
+    productCard.printInfo()
 }
