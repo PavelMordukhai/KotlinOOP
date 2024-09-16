@@ -7,4 +7,8 @@ fun main() {
     val rectangle2 = Rectangle(4)
     rectangle2.draw()
     println()
+
+    val rectangle3 = Rectangle()
+    rectangle3.draw()
+    println()
 }

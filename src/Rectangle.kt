@@ -13,6 +13,11 @@ class Rectangle {
         this.height = size
     }
 
+    constructor() {
+        this.width = 1
+        this.height = 1
+    }
+
     fun draw() {
         repeat(height) {
             repeat(width) {
