@@ -8,10 +8,15 @@ class Rectangle {
         this.height = height
     }
 
+    constructor(size: Int) {
+        this.width = size
+        this.height = size
+    }
+
     fun draw() {
         repeat(height) {
             repeat(width) {
-                print("* ")
+                print(" * ")
             }
             println()
         }
