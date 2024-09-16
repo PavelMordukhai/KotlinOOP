@@ -3,8 +3,8 @@ class Director(
     val age: Int,
 ) {
 
-    fun takeCoffee(assistant: Assistant, drinkName: String) {
-        assistant.bringCoffee(drinkName)
+    fun takeCoffee(assistant: Assistant) {
+        val drinkName: String = assistant.bringCoffee()
         println("\nThank you, ${assistant.name}! The $drinkName is very tasty!")
     }
 }
