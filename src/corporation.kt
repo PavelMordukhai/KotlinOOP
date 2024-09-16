@@ -1,5 +1,5 @@
 fun main() {
 
     val assistant = Assistant()
-    assistant.bringCoffee()
+    assistant.bringCoffee(1, "Espresso")
 }
