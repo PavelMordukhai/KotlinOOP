@@ -8,4 +8,8 @@ class Person {
     fun sayHello() {
         println("Hello!")
     }
+
+    fun run() {
+        println("Running...")
+    }
 }
