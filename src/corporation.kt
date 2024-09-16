@@ -1,16 +1,11 @@
 fun main() {
 
-    print("Enter name: ")
-    val name = readln()
-    print("Enter brand: ")
-    val brand = readln()
-    print("Enter size: ")
-    val size = readln().toFloat()
-    print("Enter price: ")
-    val price = readln().toInt()
-    println()
+    val consultant1 = Consultant("John")
+    consultant1.sayHello()
 
-    val productCard = ProductCard(name = name, brand = brand, size = size, price = price)
+    val consultant2 = Consultant("Max", 15)
+    consultant2.sayHello()
 
-    productCard.printInfo()
+    val consultant3 = Consultant("Nick", 25)
+    consultant3.sayHello()
 }
