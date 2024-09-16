@@ -27,5 +27,8 @@ fun main() {
             "\nHeight: ${first.height}\nWeight: ${first.weight}")
     println("\n2. Name: ${second.name}\nAge: ${second.age}" +
             "\nHeight: ${second.height}\nWeight: ${second.weight}")
+
+    first.sayHello()
+    second.sayHello()
 }
 
