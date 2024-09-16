@@ -1,10 +1,8 @@
 class Rectangle(
-    val width: Int,
-    val height: Int
+    val width: Int = 1,
+    val height: Int = 1,
 ) {
     constructor(size: Int): this(size, size)
-
-    constructor(): this(1)
 
     fun draw() {
         repeat(height) {
