@@ -5,7 +5,7 @@ open class Worker(
     val age: Int = 0,
 ) {
 
-    fun work() {
+    open fun work() {
         println("I'm working now...")
     }
 }
