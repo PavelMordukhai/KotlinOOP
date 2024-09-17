@@ -1,3 +1,5 @@
+package other
+
 import kotlin.random.Random
 
 class Monster {

@@ -1,3 +1,5 @@
+package other
+
 class DeliveryObject(
     val length: Int,
     val width: Int,
