@@ -3,7 +3,7 @@ package corporation
 class Assistant(
     name: String,
     age: Int = 0,
-): Worker(name = name, age = age) {
+) : Worker(name = name, age = age) {
 
     override fun work() {
         println("I'm answering the phone now...")
