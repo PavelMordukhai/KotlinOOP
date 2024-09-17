@@ -9,5 +9,6 @@ fun main() {
     val employees = listOf<Worker>(director, consultant, assistant)
     for (employee in employees) {
         employee.work()
+        println()
     }
 }
