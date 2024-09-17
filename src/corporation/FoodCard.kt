@@ -8,6 +8,7 @@ class FoodCard(
 ) : ProductCard(name, brand, price) {
 
     override fun printInfo() {
-        println("Name: ${name}\nBrand: ${brand}\nPrice: $price\nCaloric: $caloric")
+        super.printInfo()
+        println("Caloric: $caloric")
     }
 }
