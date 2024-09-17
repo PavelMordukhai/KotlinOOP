@@ -1,7 +1,9 @@
+package corporation
+
 class Director(
-    val name: String,
-    val age: Int,
-) {
+    name: String,
+    age: Int,
+): Worker(name = name, age = age) {
 
     fun takeCoffee(assistant: Assistant) {
         val drinkName: String = assistant.bringCoffee()
@@ -10,6 +12,6 @@ class Director(
 
     fun getConsultantToWork(consultant: Consultant) {
         val count = consultant.serveCustomers()
-        println("Consultant ${consultant.name} served $count clients")
+        println("corporation.Consultant ${consultant.name} served $count clients")
     }
 }

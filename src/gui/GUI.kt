@@ -1,3 +1,5 @@
+package gui
+
 fun main() {
 
     val rectangle1 = Rectangle(8, 5)

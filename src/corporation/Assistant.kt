@@ -1,7 +1,9 @@
+package corporation
+
 class Assistant(
-    val name: String,
-    val age: Int = 0,
-) {
+    name: String,
+    age: Int = 0,
+): Worker(name = name, age = age) {
 
     fun bringCoffee(
         drinkName: String = "Cappuccino",
