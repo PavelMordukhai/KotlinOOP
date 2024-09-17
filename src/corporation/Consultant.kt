@@ -1,9 +1,11 @@
+package corporation
+
 import kotlin.random.Random
 
 class Consultant(
-    val name: String,
-    val age: Int = 0
-) {
+    name: String,
+    age: Int = 0,
+): Worker(name = name, age = age) {
 
     fun serveCustomers(): Int {
         val count = Random.nextInt(0, 10)
