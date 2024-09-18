@@ -5,17 +5,33 @@ class Accountant(
     age: Int = 0,
 ) : Worker(name = name, age = age) {
 
+    override fun work() {
+        val operationCodes = OperationCode.entries
+
+        while (true) {
+            print("Enter the operation code.")
+            for ((index, code) in operationCodes.withIndex()) {
+                print(" $index - ${code.title},")
+            }
+            print("\b: ")
+
+            val operationIndex = readln().toInt()
+            val operationCode = operationCodes[operationIndex]
+            when (operationCode) {
+                OperationCode.EXIT -> break
+                OperationCode.REGISTER_NEW_ITEM -> registerNewItem()
+            }
+        }
+    }
+
     fun registerNewItem() {
         val productTypes = ProductType.entries
 
-        print("Enter the product type. ")
+        print("Enter the product type.")
         for ((index, type) in productTypes.withIndex()) {
-            print("$index - ${type.title}")
-            if (index < productTypes.size - 1)
-                print(", ")
-            else
-                print(": ")
+            print(" $index - ${type.title},")
         }
+        print("\b: ")
 
         val productTypeIndex = readln().toInt()
         val productType: ProductType = productTypes[productTypeIndex]
@@ -64,27 +80,5 @@ class Accountant(
         }
 
         card.printInfo()
-    }
-
-    override fun work() {
-        val operationCodes = OperationCode.entries
-
-        while (true) {
-            print("Enter the operation code. ")
-            for ((index, code) in operationCodes.withIndex()) {
-                print("$index - ${code.title}")
-                if (index < operationCodes.size - 1)
-                    print(", ")
-                else
-                    print(": ")
-            }
-
-            val operationIndex = readln().toInt()
-            val operationCode = operationCodes[operationIndex]
-            when (operationCode) {
-                OperationCode.EXIT -> break
-                OperationCode.REGISTER_NEW_ITEM -> registerNewItem()
-            }
-        }
     }
 }
