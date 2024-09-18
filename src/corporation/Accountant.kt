@@ -5,9 +5,36 @@ class Accountant(
     age: Int = 0,
 ) : Worker(name = name, age = age) {
 
+    override fun work() {
+        val operationCodes = OperationCode.entries
+
+        while (true) {
+            print("Enter the operation code.")
+            for ((index, code) in operationCodes.withIndex()) {
+                print(" $index - ${code.title},")
+            }
+            print("\b: ")
+
+            val operationIndex = readln().toInt()
+            val operationCode = operationCodes[operationIndex]
+            when (operationCode) {
+                OperationCode.EXIT -> break
+                OperationCode.REGISTER_NEW_ITEM -> registerNewItem()
+            }
+        }
+    }
+
     fun registerNewItem() {
-        print("Enter the product type. 0 - Food, 1 - Appliance, 2 - Shoe: ")
-        val productType = readln().toInt()
+        val productTypes = ProductType.entries
+
+        print("Enter the product type.")
+        for ((index, type) in productTypes.withIndex()) {
+            print(" $index - ${type.title},")
+        }
+        print("\b: ")
+
+        val productTypeIndex = readln().toInt()
+        val productType: ProductType = productTypes[productTypeIndex]
 
         print("Enter the product name: ")
         val productName = readln()
@@ -17,7 +44,8 @@ class Accountant(
         val productPrice = readln().toInt()
 
         val card = when (productType) {
-            0 -> {
+
+            ProductType.FOOD -> {
                 print("Enter the caloric: ")
                 val caloric = readln().toInt()
                 FoodCard(
@@ -28,7 +56,7 @@ class Accountant(
                 )
             }
 
-            1 -> {
+            ProductType.APPLIANCE -> {
                 print("Enter the wattage: ")
                 val wattage = readln().toInt()
                 ApplianceCard(
@@ -39,7 +67,7 @@ class Accountant(
                 )
             }
 
-            else -> {
+            ProductType.SHOE -> {
                 print("Enter the size: ")
                 val size = readln().toFloat()
                 ShoeCard(
@@ -52,16 +80,5 @@ class Accountant(
         }
 
         card.printInfo()
-    }
-
-    override fun work() {
-        while (true) {
-            print("Enter the operation code. 0 - exit, 1 - register new item: ")
-            val operation = readln().toInt()
-            when (operation) {
-                0 -> break
-                1 -> registerNewItem()
-            }
-        }
     }
 }
