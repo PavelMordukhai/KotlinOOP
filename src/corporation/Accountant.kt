@@ -6,8 +6,17 @@ class Accountant(
 ) : Worker(name = name, age = age) {
 
     fun registerNewItem() {
-        print("Enter the product type. 0 - Food, 1 - Appliance, 2 - Shoe: ")
-        val productType = readln().toInt()
+        val productTypes = ProductType.entries
+
+        print(
+            "Enter the product type. " +
+                    "0 - ${productTypes[0]}, " +
+                    "1 - ${productTypes[1]}, " +
+                    "2 - ${productTypes[2]}: "
+        )
+
+        val productTypeIndex = readln().toInt()
+        val productType: ProductType = productTypes[productTypeIndex]
 
         print("Enter the product name: ")
         val productName = readln()
@@ -17,7 +26,8 @@ class Accountant(
         val productPrice = readln().toInt()
 
         val card = when (productType) {
-            0 -> {
+
+            ProductType.FOOD -> {
                 print("Enter the caloric: ")
                 val caloric = readln().toInt()
                 FoodCard(
@@ -28,7 +38,7 @@ class Accountant(
                 )
             }
 
-            1 -> {
+            ProductType.APPLIANCE -> {
                 print("Enter the wattage: ")
                 val wattage = readln().toInt()
                 ApplianceCard(
@@ -39,7 +49,7 @@ class Accountant(
                 )
             }
 
-            else -> {
+            ProductType.SHOE -> {
                 print("Enter the size: ")
                 val size = readln().toFloat()
                 ShoeCard(
