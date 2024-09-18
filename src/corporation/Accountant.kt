@@ -67,12 +67,23 @@ class Accountant(
     }
 
     override fun work() {
+        val operationCodes = OperationCode.entries
+
         while (true) {
-            print("Enter the operation code. 0 - exit, 1 - register new item: ")
-            val operation = readln().toInt()
-            when (operation) {
-                0 -> break
-                1 -> registerNewItem()
+            print("Enter the operation code. ")
+            for ((index, code) in operationCodes.withIndex()) {
+                print("$index - ${code.title}")
+                if (index < operationCodes.size - 1)
+                    print(", ")
+                else
+                    print(": ")
+            }
+
+            val operationIndex = readln().toInt()
+            val operationCode = operationCodes[operationIndex]
+            when (operationCode) {
+                OperationCode.EXIT -> break
+                OperationCode.REGISTER_NEW_ITEM -> registerNewItem()
             }
         }
     }
