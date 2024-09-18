@@ -8,12 +8,14 @@ class Accountant(
     fun registerNewItem() {
         val productTypes = ProductType.entries
 
-        print(
-            "Enter the product type. " +
-                    "0 - ${productTypes[0]}, " +
-                    "1 - ${productTypes[1]}, " +
-                    "2 - ${productTypes[2]}: "
-        )
+        print("Enter the product type. ")
+        for ((index, type) in productTypes.withIndex()) {
+            print("$index - ${type.title}")
+            if (index < productTypes.size - 1)
+                print(", ")
+            else
+                print(": ")
+        }
 
         val productTypeIndex = readln().toInt()
         val productType: ProductType = productTypes[productTypeIndex]

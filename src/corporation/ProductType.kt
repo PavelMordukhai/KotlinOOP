@@ -1,8 +1,10 @@
 package corporation
 
-enum class ProductType {
+enum class ProductType(
+    val title: String,
+) {
 
-    FOOD,
-    APPLIANCE,
-    SHOE
+    FOOD("Food"),
+    APPLIANCE("Appliance"),
+    SHOE("Shoe")
 }
