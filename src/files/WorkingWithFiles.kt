@@ -4,25 +4,6 @@ import java.io.File
 
 fun main() {
 
-    val hw = File("test.txt")
-    hw.writeText("Hello ")
-    hw.appendText("World!\n\n")
-
-//    val toDoListFile = File("todo_list.txt")
-//
-//    while (true) {
-//        print("Enter a new item or 0 to exit: ")
-//
-//        val item = readln()
-//        if (item == "0")
-//            break
-//
-//        toDoListFile.appendText("$item\n")
-//    }
-//
-//    val content = toDoListFile.readText()
-//    println(content)
-
     val operationCodes = OperationCodeTest.entries
     val file = File("todo_list.txt")
 
@@ -44,8 +25,11 @@ fun main() {
             }
 
             OperationCodeTest.SHOW_ALL_ITEMS -> {
-                val content = file.readText()
-                println(content)
+                val content = file.readText().trim()
+                val items = content.split("\n")
+                for ((index, item) in items.withIndex()) {
+                    println("$index - $item")
+                }
             }
         }
     }
