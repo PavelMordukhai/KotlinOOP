@@ -5,6 +5,8 @@ class Accountant(
     age: Int = 0,
 ) : Worker(name = name, age = age) {
 
+    val items = mutableListOf<ProductCard>()
+
     override fun work() {
         val operationCodes = OperationCode.entries
 
@@ -20,7 +22,14 @@ class Accountant(
             when (operationCode) {
                 OperationCode.EXIT -> break
                 OperationCode.REGISTER_NEW_ITEM -> registerNewItem()
+                OperationCode.SHOW_ALL_ITEMS -> showAllItems()
             }
+        }
+    }
+
+    fun showAllItems() {
+        for (item in items) {
+            item.printInfo()
         }
     }
 
@@ -79,6 +88,6 @@ class Accountant(
             }
         }
 
-        card.printInfo()
+        items.add(card)
     }
 }
