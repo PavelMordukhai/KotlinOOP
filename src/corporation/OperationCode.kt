@@ -5,5 +5,6 @@ enum class OperationCode(
 ) {
 
     EXIT("Exit"),
-    REGISTER_NEW_ITEM("Register new item")
+    REGISTER_NEW_ITEM("Register new item"),
+    SHOW_ALL_ITEMS("Show all items")
 }
