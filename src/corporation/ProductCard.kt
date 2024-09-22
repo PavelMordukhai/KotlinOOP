@@ -7,6 +7,6 @@ open class ProductCard(
 ) {
 
     open fun printInfo() {
-        println("Name: ${name}\nBrand: ${brand}\nPrice: $price")
+        print("Name: $name Brand: $brand Price: $price")
     }
 }

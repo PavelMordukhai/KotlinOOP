@@ -9,6 +9,6 @@ class ApplianceCard(
 
     override fun printInfo() {
         super.printInfo()
-        println("Wattage: $wattage")
+        println(" Wattage: $wattage")
     }
 }
