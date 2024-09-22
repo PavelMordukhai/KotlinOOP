@@ -1,11 +1,14 @@
 package corporation
 
+import java.io.File
+
 class Accountant(
     name: String,
     age: Int = 0,
 ) : Worker(name = name, age = age) {
 
     val items = mutableListOf<ProductCard>()
+    val file = File("product_cards.txt")
 
     override fun work() {
         val operationCodes = OperationCode.entries
@@ -47,47 +50,37 @@ class Accountant(
 
         print("Enter the product name: ")
         val productName = readln()
+        file.appendText(productName)
+
         print("Enter the product brand: ")
         val productBrand = readln()
+        file.appendText(productBrand)
+
         print("Enter the product price: ")
         val productPrice = readln().toInt()
+        file.appendText("$productPrice")
 
-        val card = when (productType) {
+        when (productType) {
 
             ProductType.FOOD -> {
                 print("Enter the caloric: ")
                 val caloric = readln().toInt()
-                FoodCard(
-                    name = productName,
-                    brand = productBrand,
-                    price = productPrice,
-                    caloric = caloric
-                )
+                file.appendText("$caloric")
             }
 
             ProductType.APPLIANCE -> {
                 print("Enter the wattage: ")
                 val wattage = readln().toInt()
-                ApplianceCard(
-                    name = productName,
-                    brand = productBrand,
-                    price = productPrice,
-                    wattage = wattage
-                )
+                file.appendText("$wattage")
             }
 
             ProductType.SHOE -> {
                 print("Enter the size: ")
                 val size = readln().toFloat()
-                ShoeCard(
-                    name = productName,
-                    brand = productBrand,
-                    price = productPrice,
-                    size = size
-                )
+                file.appendText("$size")
             }
         }
 
-        items.add(card)
+        file.appendText("\n")
     }
 }
