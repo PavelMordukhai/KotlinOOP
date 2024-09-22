@@ -50,37 +50,37 @@ class Accountant(
 
         print("Enter the product name: ")
         val productName = readln()
-        file.appendText(productName)
+        file.appendText("$productName|")
 
         print("Enter the product brand: ")
         val productBrand = readln()
-        file.appendText(productBrand)
+        file.appendText("$productBrand|")
 
         print("Enter the product price: ")
         val productPrice = readln().toInt()
-        file.appendText("$productPrice")
+        file.appendText("$productPrice|")
 
         when (productType) {
 
             ProductType.FOOD -> {
                 print("Enter the caloric: ")
                 val caloric = readln().toInt()
-                file.appendText("$caloric")
+                file.appendText("$caloric|")
             }
 
             ProductType.APPLIANCE -> {
                 print("Enter the wattage: ")
                 val wattage = readln().toInt()
-                file.appendText("$wattage")
+                file.appendText("$wattage|")
             }
 
             ProductType.SHOE -> {
                 print("Enter the size: ")
                 val size = readln().toFloat()
-                file.appendText("$size")
+                file.appendText("$size|")
             }
         }
 
-        file.appendText("\n")
+        file.appendText("$productType\n")
     }
 }
