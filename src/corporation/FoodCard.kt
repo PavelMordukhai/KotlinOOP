@@ -9,6 +9,6 @@ class FoodCard(
 
     override fun printInfo() {
         super.printInfo()
-        println("Caloric: $caloric")
+        println(" Caloric: $caloric")
     }
 }

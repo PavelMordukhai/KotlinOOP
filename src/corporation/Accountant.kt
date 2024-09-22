@@ -7,7 +7,7 @@ class Accountant(
     age: Int = 0,
 ) : Worker(name = name, age = age) {
 
-    val items = mutableListOf<ProductCard>()
+//    val items = mutableListOf<ProductCard>()
     val file = File("product_cards.txt")
 
     override fun work() {
@@ -31,8 +31,36 @@ class Accountant(
     }
 
     fun showAllItems() {
-        for (item in items) {
-            item.printInfo()
+        val content = file.readText().trim()
+        val cardsAsString = content.split("\n")
+        for (card in cardsAsString) {
+            val properties = card.split("|")
+
+            val name = properties[0]
+            val brand = properties[1]
+            val price = properties[2].toInt()
+
+            val type = properties.last()
+            val productType = ProductType.valueOf(type)
+
+            val productCard = when (productType) {
+                ProductType.FOOD -> {
+                    val caloric = properties[3].toInt()
+                    FoodCard(name, brand, price, caloric)
+                }
+
+                ProductType.APPLIANCE -> {
+                    val wattage = properties[3].toInt()
+                    ApplianceCard(name, brand, price, wattage)
+                }
+
+                ProductType.SHOE -> {
+                    val size = properties[3].toFloat()
+                    ShoeCard(name, brand, price, size)
+                }
+            }
+
+            productCard.printInfo()
         }
     }
 
