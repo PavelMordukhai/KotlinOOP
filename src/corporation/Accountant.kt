@@ -85,9 +85,9 @@ class Accountant(
     }
 
     fun showAllItems() {
-        val cards = mutableListOf<ProductCard>()
-
         val content = file.readText().trim()
+        if (content.isEmpty()) return
+
         val cardsAsString = content.split("\n")
         for (card in cardsAsString) {
             val properties = card.split("|")
