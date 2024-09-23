@@ -3,7 +3,7 @@ package corporation
 class Director(
     name: String,
     age: Int,
-): Worker(name = name, age = age) {
+) : Worker(name = name, age = age) {
 
     override fun work() {
         println("I'm drinking coffee...")

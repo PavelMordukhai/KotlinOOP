@@ -9,4 +9,3 @@ open class Worker(
         println("I'm working now...")
     }
 }
-

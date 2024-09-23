@@ -5,7 +5,7 @@ import kotlin.random.Random
 class Consultant(
     name: String,
     age: Int = 0,
-): Worker(name = name, age = age) {
+) : Worker(name = name, age = age) {
 
     override fun work() {
         serveCustomers()
