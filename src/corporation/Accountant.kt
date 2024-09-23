@@ -6,7 +6,6 @@ class Accountant(
     name: String,
     age: Int = 0,
 ) : Worker(name = name, age = age) {
-
     val file = File("product_cards.txt")
 
     override fun work() {
@@ -123,14 +122,11 @@ class Accountant(
         print("Enter the product name: ")
         val productName = readln()
 
-
         print("Enter the product brand: ")
         val productBrand = readln()
 
-
         print("Enter the product price: ")
         val productPrice = readln().toInt()
-
 
         val card = when (productType) {
             ProductType.FOOD -> {
