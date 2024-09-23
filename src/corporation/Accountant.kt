@@ -96,20 +96,14 @@ class Accountant(
         file.appendText("${productCard.name}|${productCard.brand}|${productCard.price}|")
 
         when (productCard) {
-            is FoodCard -> {
-                val caloric = productCard.caloric
-                file.appendText("$caloric|")
-            }
+            is FoodCard ->
+                file.appendText("${productCard.caloric}|")
 
-            is ShoeCard -> {
-                val size = productCard.size
-                file.appendText("$size|")
-            }
+            is ShoeCard ->
+                file.appendText("${productCard.size}|")
 
-            is ApplianceCard -> {
-                val wattage = productCard.wattage
-                file.appendText("$wattage|")
-            }
+            is ApplianceCard ->
+                file.appendText("${productCard.wattage}|")
         }
         file.appendText("${productCard.productType}\n")
     }
