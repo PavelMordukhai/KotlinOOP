@@ -25,8 +25,23 @@ class Accountant(
                 OperationCode.REGISTER_NEW_ITEM -> registerNewItem()
                 OperationCode.SHOW_ALL_ITEMS -> showAllItems()
                 OperationCode.REMOVE_PRODUCT_CARD -> removeProductCard()
+                OperationCode.REGISTER_NEW_EMPLOYEE -> registerNewEmployee()
+                OperationCode.FIRE_EMPLOYEE -> fireAnEmployee()
+                OperationCode.SHOW_ALL_EMPLOYEES -> showAllEmployees()
             }
         }
+    }
+
+    fun registerNewEmployee() {
+//        TODO()
+    }
+
+    fun fireAnEmployee() {
+//        TODO()
+    }
+
+    fun showAllEmployees() {
+//        TODO()
     }
 
     fun removeProductCard() {
