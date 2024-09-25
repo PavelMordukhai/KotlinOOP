@@ -3,12 +3,10 @@ package cats
 fun main() {
 
     val cat = Cat("Sam")
-    println(cat.legsCount)
-    println(cat.name)
-    cat.playWithMouse()
-    println()
+    val lion = Lion(25)
+    val animals = listOf<CatsFamily>(cat, lion)
 
-    val lion = Lion(countInPride = 25)
-    println(lion.countInPride)
-    println(lion.legsCount)
+    for (animal in animals) {
+        animal.eat()
+    }
 }
