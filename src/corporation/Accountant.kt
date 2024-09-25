@@ -3,9 +3,10 @@ package corporation
 import java.io.File
 
 class Accountant(
+    id: Int,
     name: String,
-    age: Int = 0,
-) : Worker(name = name, age = age) {
+    age: Int,
+) : Worker(id = id, name = name, age = age, position = Position.ACCOUNTANT) {
     val file = File("product_cards.txt")
 
     override fun work() {
@@ -41,6 +42,15 @@ class Accountant(
     }
 
     fun showAllEmployees() {
+//        TODO()
+    }
+
+    fun loadAllEmployees(): MutableList<Worker> {
+//        TODO()
+        return mutableListOf<Worker>()
+    }
+
+    fun saveWorkerToFile(worker: Worker) {
 //        TODO()
     }
 
