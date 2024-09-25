@@ -7,8 +7,8 @@ class ApplianceCard(
     val wattage: Int,
 ) : ProductCard(name, brand, price, ProductType.APPLIANCE) {
 
-    override fun printInfo() {
-        println("Name: $name Brand: $brand Price: $price " +
-                "Product type: ${productType.title} Wattage: $wattage")
+    override fun toString(): String {
+        return "Name: $name Brand: $brand Price: $price " +
+                "Product type: ${productType.title} Wattage: $wattage"
     }
 }
