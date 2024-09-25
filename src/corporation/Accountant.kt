@@ -6,7 +6,7 @@ class Accountant(
     id: Int,
     name: String,
     age: Int,
-) : Worker(id = id, name = name, age = age, position = Position.ACCOUNTANT) {
+) : Worker(id = id, name = name, age = age, position = Position.ACCOUNTANT), Cleaner {
 
     private val fileProductCards = File("product_cards.txt")
     private val fileWorkers = File("workers.txt")
@@ -82,7 +82,7 @@ class Accountant(
         }
     }
 
-    private fun loadAllEmployees(): MutableList<Worker> {
+    fun loadAllEmployees(): MutableList<Worker> {
         val employees = mutableListOf<Worker>()
 
         if (!fileWorkers.exists()) fileWorkers.createNewFile()

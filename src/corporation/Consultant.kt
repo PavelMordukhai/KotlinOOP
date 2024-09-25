@@ -6,7 +6,7 @@ class Consultant(
     id: Int,
     name: String,
     age: Int = 0,
-) : Worker(id = id, name = name, age = age, position = Position.CONSULTANT) {
+) : Worker(id = id, name = name, age = age, position = Position.CONSULTANT), Cleaner {
 
     override fun work() {
         serveCustomers()
