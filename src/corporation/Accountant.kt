@@ -8,8 +8,8 @@ class Accountant(
     age: Int,
 ) : Worker(id = id, name = name, age = age, position = Position.ACCOUNTANT) {
 
-    val fileProductCards = File("product_cards.txt")
-    val fileWorkers = File("workers.txt")
+    private val fileProductCards = File("product_cards.txt")
+    private val fileWorkers = File("workers.txt")
 
     override fun work() {
         val operationCodes = OperationCode.entries
@@ -35,7 +35,7 @@ class Accountant(
         }
     }
 
-    fun registerNewEmployee() {
+    private fun registerNewEmployee() {
         val positions = Position.entries
         print("Choose position -")
         for ((index, position) in positions.withIndex()) {
@@ -53,7 +53,7 @@ class Accountant(
         print("Enter age: ")
         val age = readln().toInt()
 
-        val worker = when(position) {
+        val worker = when (position) {
             Position.DIRECTOR -> Director(id, name, age)
             Position.ACCOUNTANT -> Accountant(id, name, age)
             Position.ASSISTANT -> Assistant(id, name, age)
@@ -63,7 +63,7 @@ class Accountant(
         saveWorkerToFile(worker)
     }
 
-    fun fireAnEmployee() {
+    private fun fireAnEmployee() {
         print("Enter employee's ID to fire: ")
         val id = readln().toInt()
         val employees = loadAllEmployees()
@@ -75,14 +75,14 @@ class Accountant(
         }
     }
 
-    fun showAllEmployees() {
+    private fun showAllEmployees() {
         val employees = loadAllEmployees()
         for (employee in employees) {
             employee.printInfo()
         }
     }
 
-    fun loadAllEmployees(): MutableList<Worker> {
+    private fun loadAllEmployees(): MutableList<Worker> {
         val employees = mutableListOf<Worker>()
 
         if (!fileWorkers.exists()) fileWorkers.createNewFile()
@@ -90,7 +90,7 @@ class Accountant(
         if (content.isEmpty()) return employees
 
         val employeesAsText = content.split("\n")
-        for(employeeAsText in employeesAsText) {
+        for (employeeAsText in employeesAsText) {
             val properties = employeeAsText.split("|")
             val id = properties[0].toInt()
             val name = properties[1]
@@ -98,7 +98,7 @@ class Accountant(
             val positionAsText = properties.last()
             val position = Position.valueOf(positionAsText)
 
-            val worker = when(position) {
+            val worker = when (position) {
                 Position.DIRECTOR -> Director(id, name, age)
                 Position.ACCOUNTANT -> Accountant(id, name, age)
                 Position.ASSISTANT -> Assistant(id, name, age)
@@ -109,11 +109,11 @@ class Accountant(
         return employees
     }
 
-    fun saveWorkerToFile(worker: Worker) {
+    private fun saveWorkerToFile(worker: Worker) {
         fileWorkers.appendText("${worker.id}|${worker.name}|${worker.age}|${worker.position}\n")
     }
 
-    fun removeProductCard() {
+    private fun removeProductCard() {
         val cards = loadAllCards()
         print("Enter name of card of removing: ")
         val name = readln()
@@ -130,7 +130,7 @@ class Accountant(
         }
     }
 
-    fun loadAllCards(): MutableList<ProductCard> {
+    private fun loadAllCards(): MutableList<ProductCard> {
         val cards = mutableListOf<ProductCard>()
 
         if (!fileProductCards.exists()) fileProductCards.createNewFile()
@@ -169,14 +169,14 @@ class Accountant(
         return cards
     }
 
-    fun showAllItems() {
+    private fun showAllItems() {
         val cards = loadAllCards()
         for (card in cards) {
             card.printInfo()
         }
     }
 
-    fun saveProductCardToFile(productCard: ProductCard) {
+    private fun saveProductCardToFile(productCard: ProductCard) {
         fileProductCards.appendText("${productCard.name}|${productCard.brand}|${productCard.price}|")
 
         when (productCard) {
@@ -192,7 +192,7 @@ class Accountant(
         fileProductCards.appendText("${productCard.productType}\n")
     }
 
-    fun registerNewItem() {
+    private fun registerNewItem() {
         val productTypes = ProductType.entries
 
         print("Enter the product type.")
