@@ -15,11 +15,11 @@ class Accountant(
         val operationCodes = OperationCode.entries
 
         while (true) {
-            print("Enter the operation code.")
+            println("Operation codes:")
             for ((index, code) in operationCodes.withIndex()) {
-                print(" $index - ${code.title},")
+                print("$index - ${code.title}\n")
             }
-            print("\b: ")
+            print("Enter the operation code: ")
 
             val operationIndex = readln().toInt()
             val operationCode = operationCodes[operationIndex]
@@ -84,6 +84,8 @@ class Accountant(
 
     fun loadAllEmployees(): MutableList<Worker> {
         val employees = mutableListOf<Worker>()
+
+        if (!fileWorkers.exists()) fileWorkers.createNewFile()
         val content = fileWorkers.readText().trim()
         if (content.isEmpty()) return employees
 
@@ -131,6 +133,7 @@ class Accountant(
     fun loadAllCards(): MutableList<ProductCard> {
         val cards = mutableListOf<ProductCard>()
 
+        if (!fileProductCards.exists()) fileProductCards.createNewFile()
         val content = fileProductCards.readText().trim()
         if (content.isEmpty()) return cards
 
