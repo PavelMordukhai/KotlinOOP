@@ -8,5 +8,7 @@ fun main() {
     for (employee in employees) {
         if (employee is Cleaner)
             employee.clean()
+        if (employee is Supplier)
+            employee.buyThings()
     }
 }

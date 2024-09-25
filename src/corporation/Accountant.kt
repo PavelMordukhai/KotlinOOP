@@ -6,10 +6,18 @@ class Accountant(
     id: Int,
     name: String,
     age: Int,
-) : Worker(id = id, name = name, age = age, position = Position.ACCOUNTANT), Cleaner {
+) : Worker(id = id, name = name, age = age, position = Position.ACCOUNTANT), Cleaner, Supplier {
 
     private val fileProductCards = File("product_cards.txt")
     private val fileWorkers = File("workers.txt")
+
+    override fun clean() {
+        println("My position is ${position.title}. I'm cleaning workplace...")
+    }
+
+    override fun buyThings() {
+        println("My position is ${position.title}. I'm buying things...")
+    }
 
     override fun work() {
         val operationCodes = OperationCode.entries
