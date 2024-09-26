@@ -7,17 +7,12 @@ abstract class Worker(
     val position: Position
 ) {
 
-    private var salary: Int = 15000
-
-    fun setSalary(salary: Int) {
-        if (salary < this.salary)
-            println("The new salary is to small...")
-        else this.salary = salary
-    }
-
-    fun getSalary(): Int {
-        return this.salary
-    }
+    var salary: Int = 15000
+        set(value) {
+            if (value < field)
+                println("The new salary is to small...")
+            else field = value
+        }
 
     abstract fun work()
 
