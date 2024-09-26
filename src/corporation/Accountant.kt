@@ -24,9 +24,8 @@ class Accountant(
 
         while (true) {
             println("Operation codes:")
-            for ((index, code) in operationCodes.withIndex()) {
+            for ((index, code) in operationCodes.withIndex())
                 print("$index - ${code.title}\n")
-            }
             print("Enter the operation code: ")
 
             val operationIndex = readln().toInt()
@@ -39,16 +38,30 @@ class Accountant(
                 OperationCode.REGISTER_NEW_EMPLOYEE -> registerNewEmployee()
                 OperationCode.FIRE_EMPLOYEE -> fireAnEmployee()
                 OperationCode.SHOW_ALL_EMPLOYEES -> showAllEmployees()
+                OperationCode.CHANGE_SALARY -> changeSalary()
             }
+        }
+    }
+
+    private fun changeSalary() {
+        print("Enter employee's ID to change salary: ")
+        val id = readln().toInt()
+        print("Enter new salary: ")
+        val salary = readln().toInt()
+        val employees = loadAllEmployees()
+        fileWorkers.writeText("")
+        for (employee in employees) {
+            if (employee.id == id)
+                employee.salary = salary
+            saveWorkerToFile(employee)
         }
     }
 
     private fun registerNewEmployee() {
         val positions = Position.entries
         print("Choose position -")
-        for ((index, position) in positions.withIndex()) {
+        for ((index, position) in positions.withIndex())
             print(" $index - ${position.title}")
-        }
         print("\b: ")
 
         val positionIndex = readln().toInt()
@@ -60,6 +73,8 @@ class Accountant(
         val name = readln()
         print("Enter age: ")
         val age = readln().toInt()
+        print("Enter salary: ")
+        val salary = readln().toInt()
 
         val worker = when (position) {
             Position.DIRECTOR -> Director(id, name, age)
@@ -67,6 +82,7 @@ class Accountant(
             Position.ASSISTANT -> Assistant(id, name, age)
             Position.CONSULTANT -> Consultant(id, name, age)
         }
+        worker.salary = salary
 
         saveWorkerToFile(worker)
     }
@@ -76,18 +92,15 @@ class Accountant(
         val id = readln().toInt()
         val employees = loadAllEmployees()
         fileWorkers.writeText("")
-        for (employee in employees) {
-            if (employee.id != id) {
+        for (employee in employees)
+            if (employee.id != id)
                 saveWorkerToFile(employee)
-            }
-        }
     }
 
     private fun showAllEmployees() {
         val employees = loadAllEmployees()
-        for (employee in employees) {
+        for (employee in employees)
             employee.printInfo()
-        }
     }
 
     fun loadAllEmployees(): MutableList<Worker> {
@@ -103,6 +116,7 @@ class Accountant(
             val id = properties[0].toInt()
             val name = properties[1]
             val age = properties[2].toInt()
+            val salary = properties[3].toInt()
             val positionAsText = properties.last()
             val position = Position.valueOf(positionAsText)
 
@@ -112,13 +126,14 @@ class Accountant(
                 Position.ASSISTANT -> Assistant(id, name, age)
                 Position.CONSULTANT -> Consultant(id, name, age)
             }
+            worker.salary = salary
             employees.add(worker)
         }
         return employees
     }
 
     private fun saveWorkerToFile(worker: Worker) {
-        fileWorkers.appendText("${worker.id}|${worker.name}|${worker.age}|${worker.position}\n")
+        fileWorkers.appendText("${worker.id}|${worker.name}|${worker.age}|${worker.salary}|${worker.position}\n")
     }
 
     private fun removeProductCard() {
@@ -126,16 +141,14 @@ class Accountant(
         print("Enter name of card of removing: ")
         val name = readln()
 
-        for (card in cards) {
+        for (card in cards)
             if (card.name == name) {
                 cards.remove(card)
                 break
             }
-        }
         fileProductCards.writeText("")
-        for (card in cards) {
+        for (card in cards)
             saveProductCardToFile(card)
-        }
     }
 
     private fun loadAllCards(): MutableList<ProductCard> {
@@ -179,23 +192,17 @@ class Accountant(
 
     private fun showAllItems() {
         val cards = loadAllCards()
-        for (card in cards) {
+        for (card in cards)
             card.printInfo()
-        }
     }
 
     private fun saveProductCardToFile(productCard: ProductCard) {
         fileProductCards.appendText("${productCard.name}|${productCard.brand}|${productCard.price}|")
 
         when (productCard) {
-            is FoodCard ->
-                fileProductCards.appendText("${productCard.caloric}|")
-
-            is ShoeCard ->
-                fileProductCards.appendText("${productCard.size}|")
-
-            is ApplianceCard ->
-                fileProductCards.appendText("${productCard.wattage}|")
+            is FoodCard -> fileProductCards.appendText("${productCard.caloric}|")
+            is ShoeCard -> fileProductCards.appendText("${productCard.size}|")
+            is ApplianceCard -> fileProductCards.appendText("${productCard.wattage}|")
         }
         fileProductCards.appendText("${productCard.productType}\n")
     }
@@ -204,9 +211,8 @@ class Accountant(
         val productTypes = ProductType.entries
 
         print("Enter the product type.")
-        for ((index, type) in productTypes.withIndex()) {
+        for ((index, type) in productTypes.withIndex())
             print(" $index - ${type.title},")
-        }
         print("\b: ")
 
         val productTypeIndex = readln().toInt()
