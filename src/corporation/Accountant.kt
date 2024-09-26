@@ -52,7 +52,7 @@ class Accountant(
         fileWorkers.writeText("")
         for (employee in employees) {
             if (employee.id == id)
-                employee.salary = salary
+                employee.setSalary(salary)
             saveWorkerToFile(employee)
         }
     }
@@ -82,7 +82,7 @@ class Accountant(
             Position.ASSISTANT -> Assistant(id, name, age)
             Position.CONSULTANT -> Consultant(id, name, age)
         }
-        worker.salary = salary
+        worker.setSalary(salary)
 
         saveWorkerToFile(worker)
     }
@@ -126,14 +126,14 @@ class Accountant(
                 Position.ASSISTANT -> Assistant(id, name, age)
                 Position.CONSULTANT -> Consultant(id, name, age)
             }
-            worker.salary = salary
+            worker.setSalary(salary)
             employees.add(worker)
         }
         return employees
     }
 
     private fun saveWorkerToFile(worker: Worker) {
-        fileWorkers.appendText("${worker.id}|${worker.name}|${worker.age}|${worker.salary}|${worker.position}\n")
+        fileWorkers.appendText("${worker.id}|${worker.name}|${worker.age}|${worker.getSalary()}|${worker.position}\n")
     }
 
     private fun removeProductCard() {
