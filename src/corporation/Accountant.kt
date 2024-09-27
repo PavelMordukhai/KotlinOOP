@@ -1,7 +1,5 @@
 package corporation
 
-import java.io.File
-
 class Accountant(
     id: Int,
     name: String,
@@ -15,8 +13,8 @@ class Accountant(
     position = Position.ACCOUNTANT
 ), Cleaner, Supplier {
 
-    val workersRepository = WorkersRepository()
-    private val fileProductCards = File("product_cards.txt")
+    private val workersRepository = WorkersRepository()
+    private val productCardsRepository = ProductCardsRepository()
 
     override fun clean() {
         println("My position is ${position.title}. I'm cleaning workplace...")
@@ -99,74 +97,15 @@ class Accountant(
     }
 
     private fun removeProductCard() {
-        val cards = loadAllCards()
         print("Enter name of card of removing: ")
         val name = readln()
-
-        for (card in cards)
-            if (card.name == name) {
-                cards.remove(card)
-                break
-            }
-        fileProductCards.writeText("")
-        for (card in cards)
-            saveProductCardToFile(card)
-    }
-
-    private fun loadAllCards(): MutableList<ProductCard> {
-        val cards = mutableListOf<ProductCard>()
-
-        if (!fileProductCards.exists()) fileProductCards.createNewFile()
-        val content = fileProductCards.readText().trim()
-        if (content.isEmpty()) return cards
-
-        val cardsAsString = content.split("\n")
-        for (card in cardsAsString) {
-            val properties = card.split("|")
-
-            val name = properties[0]
-            val brand = properties[1]
-            val price = properties[2].toInt()
-
-            val type = properties.last()
-            val productType = ProductType.valueOf(type)
-
-            val productCard = when (productType) {
-                ProductType.FOOD -> {
-                    val caloric = properties[3].toInt()
-                    FoodCard(name, brand, price, caloric)
-                }
-
-                ProductType.APPLIANCE -> {
-                    val wattage = properties[3].toInt()
-                    ApplianceCard(name, brand, price, wattage)
-                }
-
-                ProductType.SHOE -> {
-                    val size = properties[3].toFloat()
-                    ShoeCard(name, brand, price, size)
-                }
-            }
-            cards.add(productCard)
-        }
-        return cards
+        productCardsRepository.removeProductCard(name)
     }
 
     private fun showAllItems() {
-        val cards = loadAllCards()
+        val cards = productCardsRepository.loadAllCards()
         for (card in cards)
             card.printInfo()
-    }
-
-    private fun saveProductCardToFile(productCard: ProductCard) {
-        fileProductCards.appendText("${productCard.name}|${productCard.brand}|${productCard.price}|")
-
-        when (productCard) {
-            is FoodCard -> fileProductCards.appendText("${productCard.caloric}|")
-            is ShoeCard -> fileProductCards.appendText("${productCard.size}|")
-            is ApplianceCard -> fileProductCards.appendText("${productCard.wattage}|")
-        }
-        fileProductCards.appendText("${productCard.productType}\n")
     }
 
     private fun registerNewItem() {
@@ -208,6 +147,6 @@ class Accountant(
                 ShoeCard(productName, productBrand, productPrice, size)
             }
         }
-        saveProductCardToFile(card)
+        productCardsRepository.registerNewItem(card)
     }
 }
