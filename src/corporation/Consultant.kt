@@ -6,7 +6,14 @@ class Consultant(
     id: Int,
     name: String,
     age: Int = 0,
-) : Worker(id = id, name = name, age = age, position = Position.CONSULTANT), Cleaner {
+    salary: Int,
+) : Worker(
+    id = id,
+    name = name,
+    age = age,
+    salary = salary,
+    position = Position.CONSULTANT
+), Cleaner {
 
     override fun clean() {
         println("My position is ${position.title}. I'm cleaning workplace...")

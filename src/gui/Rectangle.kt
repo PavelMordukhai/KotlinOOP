@@ -1,9 +1,13 @@
 package gui
 
 class Rectangle(
-    val width: Int = 1,
-    val height: Int = 1,
+    var width: Int = 0,
+    var height: Int = 0,
 ) {
+
+    val area
+        get() = width * height
+
     constructor(size: Int): this(size, size)
 
     fun draw() {
