@@ -15,8 +15,8 @@ class Accountant(
     position = Position.ACCOUNTANT
 ), Cleaner, Supplier {
 
+    val workersRepository = WorkersRepository()
     private val fileProductCards = File("product_cards.txt")
-    private val fileWorkers = File("workers.txt")
 
     override fun clean() {
         println("My position is ${position.title}. I'm cleaning workplace...")
@@ -55,13 +55,7 @@ class Accountant(
         val id = readln().toInt()
         print("Enter new salary: ")
         val salary = readln().toInt()
-        val employees = loadAllEmployees()
-        fileWorkers.writeText("")
-        for (employee in employees) {
-            if (employee.id == id)
-                employee.setSalary(salary)
-            saveWorkerToFile(employee)
-        }
+        workersRepository.changeSalary(id, salary)
     }
 
     private fun registerNewEmployee() {
@@ -89,56 +83,19 @@ class Accountant(
             Position.ASSISTANT -> Assistant(id, name, age, salary)
             Position.CONSULTANT -> Consultant(id, name, age, salary)
         }
-        saveWorkerToFile(worker)
+        workersRepository.registerNewEmployee(worker)
     }
 
     private fun fireAnEmployee() {
         print("Enter employee's ID to fire: ")
         val id = readln().toInt()
-        val employees = loadAllEmployees()
-        fileWorkers.writeText("")
-        for (employee in employees)
-            if (employee.id != id)
-                saveWorkerToFile(employee)
+        workersRepository.fireAnEmployee(id)
     }
 
     private fun showAllEmployees() {
-        val employees = loadAllEmployees()
+        val employees = workersRepository.loadAllEmployees()
         for (employee in employees)
             employee.printInfo()
-    }
-
-    fun loadAllEmployees(): MutableList<Worker> {
-        val employees = mutableListOf<Worker>()
-
-        if (!fileWorkers.exists()) fileWorkers.createNewFile()
-        val content = fileWorkers.readText().trim()
-        if (content.isEmpty()) return employees
-
-        val employeesAsText = content.split("\n")
-        for (employeeAsText in employeesAsText) {
-            val properties = employeeAsText.split("|")
-            val id = properties[0].toInt()
-            val name = properties[1]
-            val age = properties[2].toInt()
-            val salary = properties[3].toInt()
-            val positionAsText = properties.last()
-            val position = Position.valueOf(positionAsText)
-
-            val worker = when (position) {
-                Position.DIRECTOR -> Director(id, name, age, salary)
-                Position.ACCOUNTANT -> Accountant(id, name, age, salary)
-                Position.ASSISTANT -> Assistant(id, name, age, salary)
-                Position.CONSULTANT -> Consultant(id, name, age, salary)
-            }
-            employees.add(worker)
-        }
-        return employees
-    }
-
-    private fun saveWorkerToFile(worker: Worker) {
-        fileWorkers
-            .appendText("${worker.id}|${worker.name}|${worker.age}|${worker.getSalary()}|${worker.position}\n")
     }
 
     private fun removeProductCard() {
