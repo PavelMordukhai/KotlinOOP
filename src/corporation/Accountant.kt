@@ -38,6 +38,7 @@ class Accountant(
             when (operationCode) {
                 OperationCode.EXIT -> {
                     workersRepository.saveChanges()
+                    productCardsRepository.saveChanges()
                     break
                 }
                 OperationCode.REGISTER_NEW_ITEM -> registerNewItem()
@@ -106,7 +107,7 @@ class Accountant(
     }
 
     private fun showAllItems() {
-        val cards = productCardsRepository.loadAllCards()
+        val cards = productCardsRepository.productCards
         for (card in cards)
             card.printInfo()
     }
