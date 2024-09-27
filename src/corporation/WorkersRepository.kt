@@ -4,20 +4,15 @@ import java.io.File
 
 class WorkersRepository {
 
-    val workers = loadAllEmployees()
     private val fileWorkers = File("workers.txt")
-
-    private fun saveWorkerToFile(worker: Worker) {
-        fileWorkers
-            .appendText("${worker.id}|${worker.name}|${worker.age}|${worker.getSalary()}|${worker.position}\n")
-    }
+    val workers = loadAllEmployees()
 
     fun saveChanges() {
-        var content = ""
+        val content = StringBuilder()
         for (worker in workers) {
-            content += "${worker.id}|${worker.name}|${worker.age}|${worker.getSalary()}|${worker.position}\n"
+            content.append("${worker.id}|${worker.name}|${worker.age}|${worker.getSalary()}|${worker.position}\n")
         }
-        fileWorkers.writeText(content)
+        fileWorkers.writeText(content.toString())
     }
 
     fun registerNewEmployee(worker: Worker) {

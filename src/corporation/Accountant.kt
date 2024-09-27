@@ -36,7 +36,10 @@ class Accountant(
             val operationIndex = readln().toInt()
             val operationCode = operationCodes[operationIndex]
             when (operationCode) {
-                OperationCode.EXIT -> break
+                OperationCode.EXIT -> {
+                    workersRepository.saveChanges()
+                    break
+                }
                 OperationCode.REGISTER_NEW_ITEM -> registerNewItem()
                 OperationCode.SHOW_ALL_ITEMS -> showAllItems()
                 OperationCode.REMOVE_PRODUCT_CARD -> removeProductCard()
