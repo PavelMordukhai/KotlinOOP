@@ -5,23 +5,28 @@ import java.io.File
 class ProductCardsRepository {
 
     private val fileProductCards = File("product_cards.txt")
+    val productCards = loadAllCards()
 
-    private fun saveProductCardToFile(productCard: ProductCard) {
-        fileProductCards.appendText("${productCard.name}|${productCard.brand}|${productCard.price}|")
+    fun saveChanges() {
+        val content = StringBuilder()
+        for (productCard in productCards) {
+            content.append("${productCard.name}|${productCard.brand}|${productCard.price}|")
 
-        when (productCard) {
-            is FoodCard -> fileProductCards.appendText("${productCard.caloric}|")
-            is ShoeCard -> fileProductCards.appendText("${productCard.size}|")
-            is ApplianceCard -> fileProductCards.appendText("${productCard.wattage}|")
+            when (productCard) {
+                is FoodCard -> content.append("${productCard.caloric}|")
+                is ShoeCard -> content.append("${productCard.size}|")
+                is ApplianceCard -> content.append("${productCard.wattage}|")
+            }
+            content.append("${productCard.productType}\n")
         }
-        fileProductCards.appendText("${productCard.productType}\n")
+        fileProductCards.writeText(content.toString())
     }
 
     fun registerNewItem(productCard: ProductCard) {
-        saveProductCardToFile(productCard)
+        productCards.add(productCard)
     }
 
-    fun loadAllCards(): MutableList<ProductCard> {
+    private fun loadAllCards(): MutableList<ProductCard> {
         val cards = mutableListOf<ProductCard>()
 
         if (!fileProductCards.exists()) fileProductCards.createNewFile()
@@ -61,14 +66,11 @@ class ProductCardsRepository {
     }
 
     fun removeProductCard(name: String) {
-        val cards = loadAllCards()
-        for (card in cards)
+        for (card in productCards) {
             if (card.name == name) {
-                cards.remove(card)
+                productCards.remove(card)
                 break
             }
-        fileProductCards.writeText("")
-        for (card in cards)
-            saveProductCardToFile(card)
+        }
     }
 }
