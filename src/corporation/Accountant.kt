@@ -14,7 +14,7 @@ class Accountant(
 ), Cleaner, Supplier {
 
     private val workersRepository = WorkersRepository
-    private val productCardsRepository = ProductCardsRepository()
+    private val productCardsRepository = ProductCardsRepository
 
     override fun clean() {
         println("My position is ${position.title}. I'm cleaning workplace...")
