@@ -13,7 +13,7 @@ class Accountant(
     position = Position.ACCOUNTANT
 ), Cleaner, Supplier {
 
-    private val workersRepository = WorkersRepository()
+    private val workersRepository = WorkersRepository
     private val productCardsRepository = ProductCardsRepository()
 
     override fun clean() {
