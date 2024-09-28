@@ -2,8 +2,7 @@ package corporation
 
 fun main() {
 
-    val repository = WorkersRepository
-    val workers = repository.workers
+    val workers = WorkersRepository.workers
     for (worker in workers) {
         worker.work()
     }
