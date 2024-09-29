@@ -21,6 +21,15 @@ abstract class Worker(
                 && position == other.position
     }
 
+    override fun hashCode(): Int {
+        var result = id
+        result = 31 * result + name.hashCode()
+        result = 31 * result + age
+        result = 31 * result + salary
+        result = 31 * result + position.hashCode()
+        return result
+    }
+
     override fun toString(): String {
         return "ID: $id Name: $name Age: $age Position: $position Salary: $salary"
     }
