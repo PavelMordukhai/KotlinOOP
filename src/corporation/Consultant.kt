@@ -15,6 +15,10 @@ class Consultant(
     position = Position.CONSULTANT
 ), Cleaner {
 
+    override fun copy(salary: Int): Consultant {
+        return Consultant(this.id, this.name, this.age, salary)
+    }
+
     override fun clean() {
         println("My position is ${position.title}. I'm cleaning workplace...")
     }

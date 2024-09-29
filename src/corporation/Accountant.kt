@@ -16,6 +16,10 @@ class Accountant(
     private val workersRepository = WorkersRepository
     private val productCardsRepository = ProductCardsRepository
 
+    override fun copy(salary: Int): Accountant {
+        return Accountant(this.id, this.name, this.age, salary)
+    }
+
     override fun clean() {
         println("My position is ${position.title}. I'm cleaning workplace...")
     }

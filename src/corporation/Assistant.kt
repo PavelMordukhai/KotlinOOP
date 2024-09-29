@@ -13,6 +13,10 @@ class Assistant(
     position = Position.ASSISTANT
 ), Cleaner, Supplier {
 
+    override fun copy(salary: Int): Assistant {
+        return Assistant(this.id, this.name, this.age, salary)
+    }
+
     override fun clean() {
         println("My position is ${position.title}. I'm cleaning workplace...")
     }

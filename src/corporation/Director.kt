@@ -13,6 +13,10 @@ class Director(
     position = Position.DIRECTOR
 ), Supplier {
 
+    override fun copy(salary: Int): Director {
+        return Director(this.id, this.name, this.age, salary)
+    }
+
     override fun buyThings() {
         println("My position is ${position.title}. I'm buying things...")
     }
