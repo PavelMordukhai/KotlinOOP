@@ -12,4 +12,5 @@ enum class OperationCode(
     FIRE_EMPLOYEE("Fire an employee"),
     SHOW_ALL_EMPLOYEES("Show all employees"),
     CHANGE_SALARY("Change salary"),
+    CHANGE_AGE("Change age"),
 }
