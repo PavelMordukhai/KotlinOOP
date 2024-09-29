@@ -13,8 +13,14 @@ data class Assistant(
     position = Position.ASSISTANT
 ), Cleaner, Supplier {
 
-    override fun copy(salary: Int, age: Int): Assistant {
-        return Assistant(this.id, this.name, age, salary)
+    override fun copy(
+        id: Int,
+        name: String,
+        age: Int,
+        salary: Int,
+        position: Position
+    ): Worker {
+        return copy(id, name, age, salary)
     }
 
     override fun clean() {
