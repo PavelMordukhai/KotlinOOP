@@ -30,6 +30,15 @@ object WorkersRepository {
         }
     }
 
+    fun changeAge(id: Int, age: Int) {
+        for ((index, worker) in _workers.withIndex()) {
+            if (worker.id == id) {
+                val newWorker = worker.copy(age = age)
+                _workers[index] = newWorker
+            }
+        }
+    }
+
     fun changeSalary(id: Int, salary: Int) {
         for ((index, worker) in _workers.withIndex()) {
             if (worker.id == id) {
