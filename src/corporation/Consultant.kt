@@ -15,8 +15,14 @@ data class Consultant(
     position = Position.CONSULTANT
 ), Cleaner {
 
-    override fun copy(salary: Int, age: Int): Consultant {
-        return Consultant(this.id, this.name, age, salary)
+    override fun copy(
+        id: Int,
+        name: String,
+        age: Int,
+        salary: Int,
+        position: Position
+    ): Worker {
+        return copy(id, name, age, salary)
     }
 
     override fun clean() {
