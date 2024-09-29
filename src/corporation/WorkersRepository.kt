@@ -18,9 +18,6 @@ object WorkersRepository {
     }
 
     fun registerNewEmployee(newWorker: Worker) {
-        for (worker in workers) {
-            if (worker == newWorker) return
-        }
         _workers.add(newWorker)
     }
 
@@ -34,25 +31,29 @@ object WorkersRepository {
     }
 
     fun changeAge(id: Int, age: Int) {
-        for ((index, worker) in _workers.withIndex()) {
+        for (worker in _workers) {
             if (worker.id == id) {
                 val newWorker = worker.copy(age = age)
-                _workers[index] = newWorker
+                _workers.remove(worker)
+                _workers.add(newWorker)
+                break
             }
         }
     }
 
     fun changeSalary(id: Int, salary: Int) {
-        for ((index, worker) in _workers.withIndex()) {
+        for (worker in _workers) {
             if (worker.id == id) {
                 val newWorker = worker.copy(salary = salary)
-                _workers[index] = newWorker
+                _workers.remove(worker)
+                _workers.add(newWorker)
+                break
             }
         }
     }
 
-    private fun loadAllEmployees(): MutableList<Worker> {
-        val employees = mutableListOf<Worker>()
+    private fun loadAllEmployees(): MutableSet<Worker> {
+        val employees = mutableSetOf<Worker>()
 
         if (!fileWorkers.exists()) fileWorkers.createNewFile()
         val content = fileWorkers.readText().trim()
